@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
       <top-bar/>
-      <router-view class="mt-5"/>
+      <div class="mt-5"/>
       <home/>
     </v-app>
   </div>
@@ -16,7 +16,7 @@ export default {
   poolName: "home",
   components: {
     TopBar,
-    Home
+    Home,
   }
 };
 </script>

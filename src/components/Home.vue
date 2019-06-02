@@ -38,7 +38,9 @@
 </template>
 
 <script>
-import Payment from './Payment.vue'
+import Payment from './Payment'
+
+
 export default {
   components: { Payment },
   data() {
@@ -53,4 +55,3 @@ export default {
   }
 }
 </script>
-

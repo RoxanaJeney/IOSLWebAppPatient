@@ -1,75 +1,54 @@
 <template>
-<v-dialog max-width = "600px">
-    <v-btn flat slot = "activator" class ="submit white--text"> Pay Reboost</v-btn>
-    <v-card>
-        <p class= "mx-4 py-3">Confirm Purchase</p>
-            <div class="form-group mx-4" id="credit_cards">
-        <img src="@/assets/images/visa.jpg" alt="">
-        <img src="@/assets/images/mastercard.jpg" alt="">
+    <div>
+        <vue-stripe-checkout
+                ref="checkoutRef"
+                :image="image"
+                :name="name"
+                :description="description"
+                :currency="currency"
+                :amount="amount"
+                :allow-remember-me="false"
+                @done="done"
+                @opened="opened"
+                @closed="closed"
+                @canceled="canceled"
+        ></vue-stripe-checkout>
+        <button @click="checkout">Checkout</button>
     </div>
-    <div class="payment mx-4 mr-4">
-        <form>
-            <div class="form-group owner">
-                <label for="owner">Card Holder Name</label>
-                <input type="text" class="form-control" id="owner">
-            </div>
-            <div class="form-group" id="card-number-field">
-                <label for="cardNumber">Credit Card Number</label>
-                <input type="text" class="form-control" id="cardNumber">
-            </div>
-            <div class="form-group CVV">
-                <label for="cvv">CVV</label>
-                <input type="text" class="form-control" id="cvv">
-            </div>
-            <label>Expiration Date</label>
-            <div class="form-group" id="expiration-date">
-                <v-layout>
-                <v-flex xs6>
-                    <select>
-                        <option value="01">January</option>
-                        <option value="02">February </option>
-                        <option value="03">March</option>
-                        <option value="04">April</option>
-                        <option value="05">May</option>
-                        <option value="06">June</option>
-                        <option value="07">July</option>
-                        <option value="08">August</option>
-                        <option value="09">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                </v-flex>
-                <v-flex xs6>
-                    <select>
-                        <option value="16"> 2016</option>
-                        <option value="17"> 2017</option>
-                        <option value="18"> 2018</option>
-                        <option value="19"> 2019</option>
-                        <option value="20"> 2020</option>
-                        <option value="21"> 2021</option>
-                        <option value="21"> 2022</option>
-                        <option value="21"> 2023</option>
-                    </select>
-                </v-flex>
-                </v-layout>
-            </div>
-            <div class="form-group" id="pay-now">
-                <v-flex class="text-xs-right">
-                    <button type="submit" class="submit" id="confirm-purchase">Confirm</button>
-                </v-flex>
-            </div>
-        </form>
-    </div>
-    </v-card>
-</v-dialog>
 </template>
 
-<style>
-
-p{
-    font-size: 1.6em;
-    font-weight:bold;
-}
-    
-</style>
+<script>
+    export default {
+        data() {
+            return {
+                image: 'https://svgsilh.com/svg_v2/1294131.svg',
+                name: 'Payment Boost Vaccination.',
+                description: 'Payment Vaccination',
+                currency: 'USD',
+                amount: 1500
+            }
+        },
+        methods: {
+            async checkout () {
+                // args - is an object containing the billing and shipping address if enabled
+                // eslint-disable-next-line no-unused-vars
+                const { token, args } = await this.$refs.checkoutRef.open();
+            },
+            done ({token, args}) {
+                // token - is the token object
+                // args - is an object containing the billing and shipping address if enabled
+                // do stuff...
+                // eslint-disable-next-line no-console
+                console.log(token + ' ' + args);
+            },
+            opened () {
+            },
+            closed () {
+                // do stuff
+            },
+            canceled () {
+                // do stuff
+            }
+        }
+    }
+</script>

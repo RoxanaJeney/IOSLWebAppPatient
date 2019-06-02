@@ -18,11 +18,11 @@
     <div class="payment mx-4 mr-5">
         <form>
             <div class="form-group owner">
-                <label for="owner">Card Holder Name</label>
+                <label for="owner">Payment Holder Name</label>
                 <input type="text" class="form-control" id="owner">
             </div>
             <div class="form-group" id="card-number-field">
-                <label for="cardNumber">Credit Card Number</label>
+                <label for="cardNumber">Credit Payment Number</label>
                 <input type="text" class="form-control" id="cardNumber">
             </div>
             <div class="form-group CVV">
