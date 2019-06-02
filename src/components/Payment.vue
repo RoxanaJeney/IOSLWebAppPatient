@@ -1,8 +1,8 @@
 <template>
 <v-dialog max-width = "600px">
-    <v-btn flat slot = "activator" class ="success"> Pay</v-btn>
+    <v-btn flat slot = "activator" class ="submit white--text"> Pay Reboost</v-btn>
     <v-card>
-        <v-card-title>Confirm Purchase</v-card-title>
+        <p class= "mx-4 py-3">Confirm Purchase</p>
             <div class="form-group mx-4" id="credit_cards">
         <img src="@/assets/images/visa.jpg" alt="">
         <img src="@/assets/images/mastercard.jpg" alt="">
