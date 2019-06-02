@@ -1,9 +1,9 @@
 <template>
-<div>
-    <div class="heading mx-4 my-4">
-        <p>Confirm Purchase</p>
-    </div>
-    <div class="form-group mx-4" id="credit_cards">
+<v-dialog max-width = "600px">
+    <v-btn flat slot = "activator" class ="success"> Pay</v-btn>
+    <v-card>
+        <v-card-title>Confirm Purchase</v-card-title>
+            <div class="form-group mx-4" id="credit_cards">
         <img src="@/assets/images/visa.jpg" alt="">
         <img src="@/assets/images/mastercard.jpg" alt="">
     </div>
@@ -53,7 +53,8 @@
             </div>
         </form>
     </div>
-</div>
+    </v-card>
+</v-dialog>
 </template>
 
 <style>

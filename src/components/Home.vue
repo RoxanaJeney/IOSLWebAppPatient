@@ -25,9 +25,9 @@
             <div class="caption grey--text">Doctor</div>
             <div>{{ vacc.sign }}</div>
           </v-flex>
-          <div id="payment">
-            <button @click="onPaymentClick">Booster Shot</button>
-          </div>
+          <v-flex xs6 sm4 md2>
+            <Payment />
+          </v-flex>
         </v-layout>
         <v-divider></v-divider>
       </v-card>
@@ -38,12 +38,9 @@
 </template>
 
 <script>
+import Payment from './Payment.vue'
 export default {
-  methods: {
-        onPaymentClick() {
-          // this.$router.push({ name: "Details", params: { id: this.id }})
-          },
-      },
+  components: { Payment },
   data() {
     return {
       vaccs: [
