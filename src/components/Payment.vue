@@ -35,9 +35,10 @@
                 const { token, args } = await this.$refs.checkoutRef.open();
             },
             done ({token, args}) {
-                // token - is the token object
-                // args - is an object containing the billing and shipping address if enabled
-                // do stuff...
+
+                const params = {'stripeToken': token.id, 'currency' : 'USD', 'amount': 1500, 'description' : 'test', 'stripeEmail': 'test@test.de' };
+
+                this.$http.post('http://localhost:8080/charge', params);
                 // eslint-disable-next-line no-console
                 console.log(token + ' ' + args);
             },
