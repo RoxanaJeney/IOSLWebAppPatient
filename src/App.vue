@@ -4,6 +4,7 @@
       <top-bar/>
       <div class="mt-5"/>
       <home/>
+      <notifications group="foo" position="bottom right" />
     </v-app>
   </div>
 </template>

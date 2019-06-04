@@ -34,13 +34,19 @@
                 // eslint-disable-next-line no-unused-vars
                 const { token, args } = await this.$refs.checkoutRef.open();
             },
+            // eslint-disable-next-line no-unused-vars
             done ({token, args}) {
 
                 const params = {'stripeToken': token.id, 'currency' : 'USD', 'amount': 1500, 'description' : 'test', 'stripeEmail': 'test@test.de' };
 
                 this.$http.post('http://localhost:8080/charge', params);
                 // eslint-disable-next-line no-console
-                console.log(token + ' ' + args);
+                this.$notify({
+                    group: 'foo',
+                    title: 'Success message',
+                    text: 'Successful transaction!',
+                    type: 'success'
+                });
             },
             opened () {
             },
@@ -48,7 +54,12 @@
                 // do stuff
             },
             canceled () {
-                // do stuff
+                this.$notify({
+                    group: 'foo',
+                    title: 'Failure Message',
+                    text: 'Interrupted transaction!',
+                    type: 'error'
+                });
             }
         }
     }

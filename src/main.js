@@ -4,10 +4,12 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import VueStripeCheckout from 'vue-stripe-checkout';
 import VueResource from 'vue-resource'
+import Notifications from 'vue-notification'
 
 Vue.use(Vuetify);
 Vue.use(VueStripeCheckout, 'pk_test_ePmSGqHydH0ida1IWZIAfSDF00tIqUqdtF');
 Vue.use(VueResource);
+Vue.use(Notifications);
 Vue.config.productionTip = false;
 
 new Vue({
