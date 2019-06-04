@@ -37,7 +37,7 @@
             // eslint-disable-next-line no-unused-vars
             done ({token, args}) {
 
-                const params = {'stripeToken': token.id, 'currency' : 'USD', 'amount': 1500, 'description' : 'test', 'stripeEmail': 'test@test.de' };
+                const params = {'stripeToken': token.id, 'currency' : 'USD', 'amount': this.$data.amount, 'description' : this.$data.description, 'stripeEmail': 'test@test.de'};
 
                 this.$http.post('http://localhost:8080/charge', params);
                 // eslint-disable-next-line no-console
