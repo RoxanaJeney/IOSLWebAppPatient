@@ -1,6 +1,6 @@
 <template>
     <v-toolbar dense fixed color="yellow">
-        <v-toolbar-title class="black--text bolder" :to="{name: 'home'}">
+        <v-toolbar-title class="black--text bolder" :to="{name: 'home'}"> My Yellow Book
         </v-toolbar-title>
         <v-spacer />
         <v-toolbar-items>
