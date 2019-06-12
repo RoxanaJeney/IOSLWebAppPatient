@@ -6,11 +6,11 @@
     <form class="form-signin" @submit.prevent="login">
       <h2 class="text-md-center" centered>Please log in</h2>
       
-      <label for="inputUsername" class="sr-only">Username</label>
-      <input v-model="name" value="English" type="" id="inputUsername" class="form-control" placeholder="Username">
+      <label for="username" class="sr-only">Username</label>
+      <input v-model="name" value="English" type="" id="username" class="form-control" placeholder="username">
       
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input v-model="password" value="" type="password" id="inputPassword" class="form-control" placeholder="Password">
+      <label for="password" class="sr-only">Password</label>
+      <input v-model="password" value="" type="password" id="password" class="form-control" placeholder="password">
       
       <button class="btn btn-lg btn-primary btn-block" type="submit" @click="login">Log in</button>
     </form>
@@ -32,7 +32,28 @@ export default {
   },
   methods: {
     login() {
-      this.$router.push({ name: "Home", params: { username: this.username }})
+      try {
+         const params = {'username': this.$data.username, 'password' : this.$data.password};
+         this.$http.post('http://identitychain.snet.tu-berlin.de:8000/api/login', params);
+         
+         this.$router.push({ name: "Home", params: { username: this.username }})
+ 
+                 this.$notify({
+                    group: 'foo',
+                    title: 'Success message',
+                    text: 'Successful Login!',
+                    type: 'success'
+                });
+
+			} catch (error) {
+				this.$notify({
+                    group: 'foo',
+                    title: 'Failure Message',
+                    text: 'Failure',
+                    type: 'error'
+                });
+			}
+
     },
   }
 }
