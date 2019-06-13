@@ -7,7 +7,7 @@
       <h2 class="text-md-center" centered>Please log in</h2>
       
       <label for="username" class="sr-only">Username</label>
-      <input v-model="name" value="English" type="" id="username" class="form-control" placeholder="username">
+      <input v-model="username" value="English" type="" id="username" class="form-control" placeholder="username">
       
       <label for="password" class="sr-only">Password</label>
       <input v-model="password" value="" type="password" id="password" class="form-control" placeholder="password">
@@ -33,11 +33,11 @@ export default {
   methods: {
     login() {
       const params = {'username': this.$data.username, 'password' : this.$data.password};
-      this.$http.post('http://identitychain.snet.tu-berlin.de:8005/api/login', params).then(function (response) {
+      this.$http.post('http://identitychain.snet.tu-berlin.de:8005/api/login', params).then(function () {
         // Success
-        this.$router.push({ name: "Home", params: { username: this.username }})
+        this.$router.push({ name: "Home"})
 
-        },function (response) {
+        },function () {
           // Error
          this.$notify({
                     group: 'foo',
