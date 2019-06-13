@@ -21,13 +21,12 @@
 </template>
 
 <script>
-
 export default {
   name: 'Login',
   data () {
     return {
       username: '',
-      password: ''
+      password: '',
     }
   },
   methods: {
@@ -35,6 +34,12 @@ export default {
       const params = {'username': this.$data.username, 'password' : this.$data.password};
       this.$http.post('http://identitychain.snet.tu-berlin.de:8005/api/login', params).then(function () {
         // Success
+        
+        this.$store.dispatch('retrieveToken', {
+          username: this.username,
+          password: this.password,
+        }),
+
         this.$router.push({ name: "Home"})
 
         },function () {

@@ -1,26 +1,39 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import * as types from "./mutation-types";
-import notification from "./modules/notification";
-import citizens from "./modules/citizens";
+import axios from 'axios'
 
+
+axios.defaults.baseURL = 'http://localhost:8080/#'
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   state: {
-    isLoading: false
+    token: localStorage.getItem('access_token') || null,
   },
   getters: {
-    isLoading: state => state.isLoading
   },
   mutations: {
-    [types.IS_LOADING](state, value) {
-      state.isLoading = value;
+    retrieveToken(state, token){
+      state.token = token
     }
   },
-  actions: {},
+
+  actions: {
+    retrieveToken(context, credentials){
+      axios.post('/', {
+        username: credentials.username,
+        password: credentials.password,
+      })
+        .then(response => {
+          const token = response.data.access_token
+          localStorage.setItem('access_token', token)
+          context.commit('retrieveToken', token)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+  },
   modules: {
-    notification,
-    citizens
   }
 });
