@@ -46,10 +46,10 @@ export default {
   data() {
     return {
       vaccs: [
-        { id: 1, title: 'Chickenpox', NrVacc: 1, NrVaccTotal: 3, date: '08.03.2019', manu: 'Bayer', batchID: '56', validDate: '2023-07-04', sign:'Anna Baker'},
-        { id: 2, title: 'Chickenpox', NrVacc: 2, NrVaccTotal: 3,date: '05.04.2019', manu: 'Bayer', batchID: '67', validDate: '2033-03-03', sign:'Anna Baker'},
-        { id: 3, title: 'Chickenpox', NrVacc: 3, NrVaccTotal: 3,date: '09.05.2019', manu: 'Bayer', batchID: '78', validDate: '2023-07-04', sign:'Hank Smith'},
-        { id: 4, title: 'Poliomyelitis', NrVacc: 1, NrVaccTotal: 3,date: '06.06.2019', manu: 'Bayer', batchID: '89', validDate: '2019-06-03', sign:'Gertrud Bayer'},
+        { id: 1, title: 'Chickenpox', NrVacc: 1, NrVaccTotal: 3, date: '2019-03-08', manu: 'Bayer', batchID: '56', validDate: '2023-07-04', sign:'Anna Baker'},
+        { id: 2, title: 'Chickenpox', NrVacc: 2, NrVaccTotal: 3,date: '2019-04-05', manu: 'Bayer', batchID: '67', validDate: '2033-03-03', sign:'Anna Baker'},
+        { id: 3, title: 'Chickenpox', NrVacc: 3, NrVaccTotal: 3,date: '2019-05-09', manu: 'Bayer', batchID: '78', validDate: '2023-07-04', sign:'Hank Smith'},
+        { id: 4, title: 'Poliomyelitis', NrVacc: 1, NrVaccTotal: 3,date: '2019-06-06', manu: 'Bayer', batchID: '89', validDate: '2019-06-03', sign:'Gertrud Bayer'},
       ]
     }
   }

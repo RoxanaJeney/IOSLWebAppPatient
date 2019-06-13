@@ -46,10 +46,10 @@ export default {
   data() {
     return {
       vaccs: [
-        { id: 1, title: 'Chickenpox', date: '08.10.2018', manu: 'Bayer', batchID: '56', validDate: '2023-07-04', sign:'Anna Baker'},
-        { id: 2, title: 'Whooping Cough', date: '05.05.2019', manu: 'Bayer', batchID: '67', validDate: '2033-03-03', sign:'Berta Joe'},
-        { id: 3, title: 'Tetanus', date: '09.09.2009', manu: 'Bayer', batchID: '78', validDate: '2023-07-04', sign:'Hank Smith'},
-        { id: 4, title: 'Poliomyelitis', date: '08.09.2012', manu: 'Bayer', batchID: '89', validDate: '2019-06-03', sign:'Gertrud Bayer'},
+        { id: 1, title: 'Chickenpox', date: '2018-08-10', manu: 'Bayer', batchID: '56', validDate: '2023-07-04', sign:'Anna Baker'},
+        { id: 2, title: 'Whooping Cough', date: '2019-05-05', manu: 'Bayer', batchID: '67', validDate: '2033-03-03', sign:'Berta Joe'},
+        { id: 3, title: 'Tetanus', date: '2009-09-09', manu: 'Bayer', batchID: '78', validDate: '2023-07-04', sign:'Hank Smith'},
+        { id: 4, title: 'Poliomyelitis', date: '2012-09-09', manu: 'Bayer', batchID: '89', validDate: '2019-06-03', sign:'Gertrud Bayer'},
       ]
     }
   }
