@@ -32,27 +32,21 @@ export default {
   },
   methods: {
     login() {
-      try {
-         const params = {'username': this.$data.username, 'password' : this.$data.password};
-         this.$http.post('http://identitychain.snet.tu-berlin.de:8005/api/login', params);
-         
-         this.$router.push({ name: "Home", params: { username: this.username }})
- 
-                 this.$notify({
-                    group: 'foo',
-                    title: 'Success message',
-                    text: 'Successful Login!',
-                    type: 'success'
-                });
+      const params = {'username': this.$data.username, 'password' : this.$data.password};
+      this.$http.post('http://identitychain.snet.tu-berlin.de:8005/api/login', params).then(function (response) {
+        // Success
+        this.$router.push({ name: "Home", params: { username: this.username }})
 
-			} catch (error) {
-				this.$notify({
+        },function (response) {
+          // Error
+         this.$notify({
                     group: 'foo',
                     title: 'Failure Message',
-                    text: 'Failure',
-                    type: 'error'
+                    text: 'Login failed!',
+                    type: 'errors'
                 });
-			}
+
+        });
 
     },
   }
