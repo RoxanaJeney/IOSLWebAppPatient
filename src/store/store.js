@@ -2,8 +2,6 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from 'axios'
 
-
-axios.defaults.baseURL = 'http://localhost:8080/#'
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
@@ -17,10 +15,9 @@ export const store = new Vuex.Store({
       state.token = token
     }
   },
-
   actions: {
     retrieveToken(context, credentials){
-      axios.post('/', {
+      axios.post('http://localhost:8080/', {
         username: credentials.username,
         password: credentials.password,
       })
@@ -29,8 +26,7 @@ export const store = new Vuex.Store({
           localStorage.setItem('access_token', token)
           context.commit('retrieveToken', token)
         })
-        .catch(error => {
-          console.log(error)
+        .catch({
         })
     },
   },
