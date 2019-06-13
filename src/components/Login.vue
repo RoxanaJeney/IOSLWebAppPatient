@@ -34,7 +34,7 @@ export default {
     login() {
       try {
          const params = {'username': this.$data.username, 'password' : this.$data.password};
-         this.$http.post('http://identitychain.snet.tu-berlin.de:8000/api/login', params);
+         this.$http.post('http://identitychain.snet.tu-berlin.de:8005/api/login', params);
          
          this.$router.push({ name: "Home", params: { username: this.username }})
  
