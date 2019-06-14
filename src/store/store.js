@@ -7,7 +7,7 @@ axios.defaults.baseURL = 'http://identitychain.snet.tu-berlin.de:8005/api'
 
 export const store = new Vuex.Store({
   state: {
-    token: localStorage.getItem('access_token') || null,
+    token: localStorage.getItem('token') || null,
   },
   getters: {
   },
@@ -23,8 +23,8 @@ export const store = new Vuex.Store({
         password: credentials.password,
       })
         .then(response => {
-          const token = response.data.access_token
-          localStorage.setItem('access_token', token)
+          const token = response.data.token
+          localStorage.setItem('token', token)
           context.commit('retrieveToken', token)
         })
         .catch({
