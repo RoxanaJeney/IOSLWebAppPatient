@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import axios from 'axios'
 
 Vue.use(Vuex);
+axios.defaults.baseURL = 'http://identitychain.snet.tu-berlin.de:8005/api'
 
 export const store = new Vuex.Store({
   state: {
@@ -17,7 +18,7 @@ export const store = new Vuex.Store({
   },
   actions: {
     retrieveToken(context, credentials){
-      axios.post('http://localhost:8080/', {
+      axios.post('/login', {
         username: credentials.username,
         password: credentials.password,
       })
