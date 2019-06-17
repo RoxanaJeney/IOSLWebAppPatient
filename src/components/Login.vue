@@ -32,7 +32,7 @@ export default {
   methods: {
     login() {
       const params = {'username': this.$data.username, 'password' : this.$data.password};
-      this.$http.post('http://identitychain.snet.tu-berlin.de:8005/api/login', params).then(function () {
+      this.$http.post('login', params).then(function () {
         // Success
         
         this.$store.dispatch('retrieveToken', {

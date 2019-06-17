@@ -15,6 +15,7 @@ Vue.use(VueStripeCheckout, 'pk_test_ePmSGqHydH0ida1IWZIAfSDF00tIqUqdtF');
 Vue.use(VueResource);
 Vue.use(Notifications);
 Vue.config.productionTip = false;
+Vue.http.options.root = 'http://identitychain.snet.tu-berlin.de:8005/api';
 
 new Vue({
   store: store,
