@@ -1,57 +1,109 @@
 <template>
-  <div class="home">
+    <div class="home">
 
-    <v-container class="my-5">
+        <v-container class="my-5">
 
-      <v-card flat v-for="vacc in vaccs" :key="vacc.title">
-        <v-layout row wrap :class="`pa-3 vacc ${vacc.status}`">
-          <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Vaccine</div>
-            <div>{{ vacc.title }}</div>
-          </v-flex>
-          <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Date of Vaccination</div>
-            <div>{{ vacc.date }}</div>
-          </v-flex>
-          <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Manufacturer</div>
-            <div>{{ vacc.manu }}</div>
-          </v-flex>
-          <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Expiration Date</div>
-            <div>{{ vacc.validDate }}</div>
-          </v-flex>
-          <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Doctor</div>
-            <div>{{ vacc.sign }}</div>
-          </v-flex>
-          <v-flex xs6 sm4 md2>
-            <Payment v-if="new Date(vacc.validDate) < Date.now()" />
-          </v-flex>
-        </v-layout>
-        <v-divider></v-divider>
-      </v-card>
+            <v-card flat v-for="vacc in vaccs" :key="vacc.title">
+                <v-layout row wrap :class="`pa-3 vacc ${vacc.status}`">
+                    <v-flex xs6 sm4 md2>
+                        <div class="caption grey--text">Vaccine</div>
+                        <div>{{ vacc.title }}</div>
+                    </v-flex>
+                    <v-flex xs6 sm4 md2>
+                        <div class="caption grey--text">Date of Vaccination</div>
+                        <div>{{ vacc.date }}</div>
+                    </v-flex>
+                    <v-flex xs6 sm4 md2>
+                        <div class="caption grey--text">Manufacturer</div>
+                        <div>{{ vacc.manu }}</div>
+                    </v-flex>
+                    <v-flex xs6 sm4 md2>
+                        <div class="caption grey--text">Expiration Date</div>
+                        <div>{{ vacc.validDate }}</div>
+                    </v-flex>
+                    <v-flex xs6 sm4 md2>
+                        <div class="caption grey--text">Doctor</div>
+                        <div>{{ vacc.sign }}</div>
+                    </v-flex>
+                    <v-flex xs6 sm4 md2>
+                        <Payment v-if="new Date(vacc.validDate) < Date.now()"/>
+                    </v-flex>
+                </v-layout>
+                <v-divider></v-divider>
+            </v-card>
 
-    </v-container>
-   
-  </div>
+        </v-container>
+
+    </div>
 </template>
 
 <script>
-import Payment from './Payment'
+    import Payment from './Payment'
 
 
-export default {
-  components: { Payment },
-  data() {
-    return {
-      vaccs: [
-        { id: 1, title: 'Chickenpox', date: '2018-08-10', manu: 'Bayer', batchID: '56', validDate: '2023-07-04', sign:'Anna Baker'},
-        { id: 2, title: 'Whooping Cough', date: '2019-05-05', manu: 'Bayer', batchID: '67', validDate: '2033-03-03', sign:'Berta Joe'},
-        { id: 3, title: 'Tetanus', date: '2009-09-09', manu: 'Bayer', batchID: '78', validDate: '2023-07-04', sign:'Hank Smith'},
-        { id: 4, title: 'Poliomyelitis', date: '2012-09-09', manu: 'Bayer', batchID: '89', validDate: '2019-06-03', sign:'Gertrud Bayer'},
-      ]
+    export default {
+        components: {Payment},
+        data() {
+            return {
+                vaccs: [
+                    {
+                        id: 1,
+                        title: 'Chickenpox',
+                        date: '2018-08-10',
+                        manu: 'Bayer',
+                        batchID: '56',
+                        validDate: '2023-07-04',
+                        sign: 'Anna Baker'
+                    },
+                    {
+                        id: 2,
+                        title: 'Whooping Cough',
+                        date: '2019-05-05',
+                        manu: 'Bayer',
+                        batchID: '67',
+                        validDate: '2033-03-03',
+                        sign: 'Berta Joe'
+                    },
+                    {
+                        id: 3,
+                        title: 'Tetanus',
+                        date: '2009-09-09',
+                        manu: 'Bayer',
+                        batchID: '78',
+                        validDate: '2023-07-04',
+                        sign: 'Hank Smith'
+                    },
+                    {
+                        id: 4,
+                        title: 'Poliomyelitis',
+                        date: '2012-09-09',
+                        manu: 'Bayer',
+                        batchID: '89',
+                        validDate: '2019-06-03',
+                        sign: 'Gertrud Bayer'
+                    },
+                ]
+            }
+        },
+        methods: {
+            loadCredentials() {
+
+                // eslint-disable-next-line no-console
+                console.log(this.$store.state.token);
+
+                this.$http.get('wallet/default/credential', {
+                    headers: {
+                        Authorization: this.$store.state.token
+                    }
+                }).then(r => r.data)
+                    .then(coins => {
+                        // eslint-disable-next-line no-console
+                        console.log(coins)
+                    })
+            }
+        },
+        beforeMount() {
+            this.loadCredentials();
+        }
     }
-  }
-}
 </script>
