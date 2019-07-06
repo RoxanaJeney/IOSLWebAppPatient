@@ -88,10 +88,19 @@
         methods: {
             loadCredentials() {
 
-                // eslint-disable-next-line no-console
-                console.log(this.$store.state.token);
-
                 this.$http.get('wallet/default/credential', {
+                    headers: {
+                        Authorization: this.$store.state.token
+                    }
+                }).then(r => r.data)
+                    .then(coins => {
+                        // eslint-disable-next-line no-console
+                        console.log(coins)
+                    })
+            },
+            loadCredentialOffers() {
+
+                this.$http.get('credentialoffer', {
                     headers: {
                         Authorization: this.$store.state.token
                     }
@@ -104,6 +113,7 @@
         },
         beforeMount() {
             this.loadCredentials();
+            this.loadCredentialOffers();
         }
     }
 </script>
