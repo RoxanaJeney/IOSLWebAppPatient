@@ -3,27 +3,28 @@
 
         <v-container class="my-5">
 
-            <v-card flat v-for="vacc in vaccs" :key="vacc.title">
+            <v-card flat v-for="vacc in vaccs">
                 <v-layout row wrap :class="`pa-3 vacc ${vacc.status}`">
+
                     <v-flex xs6 sm4 md2>
                         <div class="caption grey--text">Vaccine</div>
-                        <div>{{ vacc.title }}</div>
+                        <div>{{ vacc.vaccine_namestring }}</div>
                     </v-flex>
                     <v-flex xs6 sm4 md2>
                         <div class="caption grey--text">Date of Vaccination</div>
-                        <div>{{ vacc.date }}</div>
+                        <div>{{ vacc.vaccine_datedate }}</div>
                     </v-flex>
                     <v-flex xs6 sm4 md2>
                         <div class="caption grey--text">Manufacturer</div>
-                        <div>{{ vacc.manu }}</div>
+                        <div>{{ vacc.manufacturer_namestring }}</div>
                     </v-flex>
                     <v-flex xs6 sm4 md2>
                         <div class="caption grey--text">Expiration Date</div>
-                        <div>{{ vacc.validDate }}</div>
+                        <div>{{ vacc.valid_untilstring }}</div>
                     </v-flex>
                     <v-flex xs6 sm4 md2>
                         <div class="caption grey--text">Doctor</div>
-                        <div>{{ vacc.sign }}</div>
+                        <div>Test</div>
                     </v-flex>
                     <v-flex xs6 sm4 md2>
                         <Payment v-if="new Date(vacc.validDate) < Date.now()"/>
@@ -45,44 +46,7 @@
         components: {Payment},
         data() {
             return {
-                vaccs: [
-                    {
-                        id: 1,
-                        title: 'Chickenpox',
-                        date: '2018-08-10',
-                        manu: 'Bayer',
-                        batchID: '56',
-                        validDate: '2023-07-04',
-                        sign: 'Anna Baker'
-                    },
-                    {
-                        id: 2,
-                        title: 'Whooping Cough',
-                        date: '2019-05-05',
-                        manu: 'Bayer',
-                        batchID: '67',
-                        validDate: '2033-03-03',
-                        sign: 'Berta Joe'
-                    },
-                    {
-                        id: 3,
-                        title: 'Tetanus',
-                        date: '2009-09-09',
-                        manu: 'Bayer',
-                        batchID: '78',
-                        validDate: '2023-07-04',
-                        sign: 'Hank Smith'
-                    },
-                    {
-                        id: 4,
-                        title: 'Poliomyelitis',
-                        date: '2012-09-09',
-                        manu: 'Bayer',
-                        batchID: '89',
-                        validDate: '2019-06-03',
-                        sign: 'Gertrud Bayer'
-                    },
-                ]
+                vaccs: null
             }
         },
         methods: {
@@ -92,7 +56,22 @@
                     headers: {
                         Authorization: this.$store.state.token
                     }
-                }).then(r => r.data)
+                }).then(r => {
+                    let entries= {};
+                    this.vaccs = r.data.forEach((item, index) => {
+
+                        let values= {};
+
+                        for(var propertyName in item.attrs) {
+                            values[propertyName.replace("@", "")] = item.attrs[propertyName];
+                        }
+
+                        entries[index] = values;
+
+                    });
+                    console.log(entries);
+                    this.vaccs = entries;
+                })
                     .then(coins => {
                         // eslint-disable-next-line no-console
                         console.log(coins)

@@ -29,17 +29,28 @@
             }
         },
         methods: {
-            async checkout () {
+            async checkout() {
                 // args - is an object containing the billing and shipping address if enabled
                 // eslint-disable-next-line no-unused-vars
-                const { token, args } = await this.$refs.checkoutRef.open();
+                const {token, args} = await this.$refs.checkoutRef.open();
             },
             // eslint-disable-next-line no-unused-vars
-            done ({token, args}) {
+            done({token, args}) {
 
-                const params = {'stripeToken': token.id, 'currency' : 'USD', 'amount': this.$data.amount, 'description' : this.$data.description, 'stripeEmail': 'test@test.de'};
+                const params = {
+                    'stripeToken': token.id,
+                    'currency': 'USD',
+                    'amount': this.$data.amount,
+                    'description': this.$data.description,
+                    'stripeEmail': 'test@test.de',
+                    'credentialOfferId': 'DieIdMussAusDemHomeElementGeholtWerden'
+                };
 
-                this.$http.post('http://localhost:8080/charge', params);
+                // eslint-disable-next-line no-console
+                console.log(params);
+                //this.$http.post('credentialrequest', params);
+
+
                 // eslint-disable-next-line no-console
                 this.$notify({
                     group: 'foo',
@@ -48,12 +59,12 @@
                     type: 'success'
                 });
             },
-            opened () {
+            opened() {
             },
-            closed () {
+            closed() {
                 // do stuff
             },
-            canceled () {
+            canceled() {
                 this.$notify({
                     group: 'foo',
                     title: 'Failure Message',
