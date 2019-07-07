@@ -35,11 +35,23 @@
         <v-container class="my-5">
 
             <v-card flat v-for="off in offers">
-                <v-layout row wrap :class="pa-3">
+                <v-layout row wrap :class="`pa-3 off ${off.status}`">
 
                     <v-flex xs6 sm4 md2>
-                        <div class="caption grey--text">Vaccine</div>
+                        <div class="caption grey--text">Notification</div>
                         <div>New Vaccination Request</div>
+                    </v-flex>
+                    <v-flex xs6 sm4 md2>
+                        <div class="caption grey--text">Offer ID</div>
+                        <div>{{ off.id }}</div>
+                    </v-flex>
+                    <v-flex xs6 sm4 md2>
+                        <div class="caption grey--text"></div>
+                        <div>  </div>
+                    </v-flex>
+                    <v-flex xs6 sm4 md2>
+                        <div class="caption grey--text"></div>
+                        <div>  </div>
                     </v-flex>
                     <v-flex xs6 sm4 md2>
                         <Payment/>
