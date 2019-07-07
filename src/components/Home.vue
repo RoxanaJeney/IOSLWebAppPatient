@@ -54,7 +54,7 @@
                         <div>  </div>
                     </v-flex>
                     <v-flex xs6 sm4 md2>
-                        <Payment/>
+                        <Payment :credential_id="off.id"/>
                     </v-flex>
                 </v-layout>
                 <v-divider></v-divider>

@@ -28,6 +28,7 @@
                 amount: 1500
             }
         },
+        props: {credential_id: String},
         methods: {
             async checkout() {
                 // args - is an object containing the billing and shipping address if enabled
@@ -43,12 +44,16 @@
                     'amount': this.$data.amount,
                     'description': this.$data.description,
                     'stripeEmail': 'test@test.de',
-                    'credentialOfferId': 'DieIdMussAusDemHomeElementGeholtWerden'
+                    'credentialOfferId': this.credential_id
                 };
 
                 // eslint-disable-next-line no-console
-                console.log(params);
-                //this.$http.post('credentialrequest', params);
+
+                this.$http.post('credentialrequest', params, {
+                    headers: {
+                        Authorization: this.$store.state.token
+                    }
+                });
 
 
                 // eslint-disable-next-line no-console
