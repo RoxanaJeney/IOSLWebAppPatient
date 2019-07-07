@@ -26,8 +26,23 @@
                         <div class="caption grey--text">Doctor</div>
                         <div>Test</div>
                     </v-flex>
+                </v-layout>
+                <v-divider></v-divider>
+            </v-card>
+
+        </v-container>
+
+        <v-container class="my-5">
+
+            <v-card flat v-for="off in offers">
+                <v-layout row wrap :class="pa-3">
+
                     <v-flex xs6 sm4 md2>
-                        <Payment v-if="new Date(vacc.validDate) < Date.now()"/>
+                        <div class="caption grey--text">Vaccine</div>
+                        <div>New Vaccination Request</div>
+                    </v-flex>
+                    <v-flex xs6 sm4 md2>
+                        <Payment/>
                     </v-flex>
                 </v-layout>
                 <v-divider></v-divider>
@@ -46,7 +61,8 @@
         components: {Payment},
         data() {
             return {
-                vaccs: null
+                vaccs: null,
+                offers: null
             }
         },
         methods: {
@@ -69,7 +85,6 @@
                         entries[index] = values;
 
                     });
-                    console.log(entries);
                     this.vaccs = entries;
                 })
                     .then(coins => {
@@ -83,7 +98,7 @@
                     headers: {
                         Authorization: this.$store.state.token
                     }
-                }).then(r => r.data)
+                }).then(r => this.offers = r.data)
                     .then(coins => {
                         // eslint-disable-next-line no-console
                         console.log(coins)
