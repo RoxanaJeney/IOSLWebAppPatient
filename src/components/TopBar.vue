@@ -7,6 +7,12 @@
             <v-btn class="black--text" flat dark :to="{name: 'Home'}" exact>
                 <span class="hidden-sm-and-down">Home</span>
             </v-btn>
+            <v-btn class="black--text" flat dark :to="{name: 'Home'}" exact>
+                <span class="hidden-sm-and-down">Onboarding</span>
+            </v-btn>
+            <v-btn class="black--text" flat dark :to="{name: 'Proof'}" exact>
+                <span class="hidden-sm-and-down">Accept Proof</span>
+            </v-btn>
         </v-toolbar-items>
     </v-toolbar>
 </template>
