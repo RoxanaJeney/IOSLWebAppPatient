@@ -3,7 +3,7 @@
 
         <v-container class="my-5">
 
-            <v-card flat v-for="off in offers" :key="off.id">
+            <v-card flat v-for="off in requests" :key="off.id">
                 <v-layout row wrap :class="`pa-3 off ${off.status}`">
 
                     <v-flex xs6 sm4 md2>
@@ -37,48 +37,29 @@
         components: {},
         data() {
             return {
-                vaccs: null,
-                offers: [{id: "5c42fe26e1b0cc00174dc0c9"}]
+                requests: null
             }
         },
         methods: {
-            loadCredentials() {
+            loadProofRequest() {
 
-                this.$http.get('wallet/default/credential', {
+                this.$http.get('proofrequest', {
                     headers: {
                         Authorization: this.$store.state.token
                     }
                 }).then(r => {
                     let entries= {};
-                    this.vaccs = r.data.forEach((item, index) => {
+                    this.requests = r.data.forEach((item, index) => {
 
                         let values= {};
-
-                        for(var propertyName in item.attrs) {
-                            values[propertyName.replace("@", "")] = item.attrs[propertyName];
+                        for(var propertyName in item.message) {
+                            values[propertyName.replace("@", "")] = item.message[propertyName];
                         }
-
                         entries[index] = values;
 
                     });
-                    this.vaccs = entries;
+                    this.requests = entries;
                 })
-                    .then(coins => {
-                        // eslint-disable-next-line no-console
-                        console.log(coins)
-                    })
-            },
-            loadCredentialOffers() {
-
-                this.$http.get('credentialoffer', {
-                    headers: {
-                        Authorization: this.$store.state.token
-                    }
-                }).then(r => this.offers = r.data)
-                    .then(coins => {
-                        // eslint-disable-next-line no-console
-                        console.log(coins)
-                    })
             },
             triggerSnackBar() {
                 this.$notify({
@@ -90,8 +71,7 @@
             }
         },
         beforeMount() {
-            this.loadCredentials();
-            this.loadCredentialOffers();
+            this.loadProofRequest();
         }
     }
 </script>

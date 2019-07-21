@@ -78,7 +78,7 @@
             }
         },
         methods: {
-            loadCredentials() {
+            loadProofRequest() {
 
                 this.$http.get('wallet/default/credential', {
                     headers: {
@@ -87,7 +87,6 @@
                 }).then(r => {
                     let entries= {};
                     this.vaccs = r.data.forEach((item, index) => {
-
                         let values= {};
 
                         for(var propertyName in item.attrs) {
@@ -99,10 +98,6 @@
                     });
                     this.vaccs = entries;
                 })
-                    .then(coins => {
-                        // eslint-disable-next-line no-console
-                        console.log(coins)
-                    })
             },
             loadCredentialOffers() {
 
@@ -111,14 +106,10 @@
                         Authorization: this.$store.state.token
                     }
                 }).then(r => this.offers = r.data)
-                    .then(coins => {
-                        // eslint-disable-next-line no-console
-                        console.log(coins)
-                    })
             }
         },
         beforeMount() {
-            this.loadCredentials();
+            this.loadProofRequest();
             this.loadCredentialOffers();
         }
     }
