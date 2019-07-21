@@ -19,7 +19,7 @@
                         <div>  </div>
                     </v-flex>
                     <v-flex xs6 sm4 md2>
-                        <button v-on:click="triggerSnackBar">Accept Proof Request</button>
+                        <button v-on:click="acceptProofRequest(off.proofRequestId)">Accept Proof Request</button>
                         <div>  </div>
                     </v-flex>
                 </v-layout>
@@ -55,18 +55,38 @@
                         for(var propertyName in item.message) {
                             values[propertyName.replace("@", "")] = item.message[propertyName];
                         }
+                        values['proofRequestId']= item.id;
                         entries[index] = values;
-
                     });
                     this.requests = entries;
                 })
             },
-            triggerSnackBar() {
-                this.$notify({
-                    group: 'foo',
-                    title: 'Successful connection',
-                    text: 'Successfully created connection offer!',
-                    type: 'success'
+            acceptProofRequest(proofRequestId) {
+
+                var param = {"proofRequestId": proofRequestId};
+
+                this.$http.post('proof', param,{
+                    headers: {
+                        Authorization: this.$store.state.token
+                    }
+                }).then(function () {
+                    // Success
+                    this.$notify({
+                        group: 'foo',
+                        title: 'Success message',
+                        text: 'Successful accepted proof request!',
+                        type: 'success'
+                    });
+
+                },function () {
+                    // Error
+                    this.$notify({
+                        group: 'foo',
+                        title: 'Failure Message',
+                        text: 'Login failed!',
+                        type: 'errors'
+                    });
+
                 });
             }
         },
