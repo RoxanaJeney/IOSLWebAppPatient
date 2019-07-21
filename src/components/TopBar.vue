@@ -7,7 +7,7 @@
             <v-btn class="black--text" flat dark :to="{name: 'Home'}" exact>
                 <span class="hidden-sm-and-down">Home</span>
             </v-btn>
-            <v-btn class="black--text" flat dark :to="{name: 'Home'}" exact>
+            <v-btn class="black--text" flat dark :to="{name: 'Onboarding'}" exact>
                 <span class="hidden-sm-and-down">Onboarding</span>
             </v-btn>
             <v-btn class="black--text" flat dark :to="{name: 'Proof'}" exact>
