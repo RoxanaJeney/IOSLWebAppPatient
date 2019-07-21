@@ -4,7 +4,7 @@
 
         <b-modal v-model="modalShow">
 
-            <qrcode value="Hello, Worldd!" :options="{ width: 200 }"></qrcode>
+            <qrcode :value="'did: ' + qrData.did + ' verkey: ' + qrData.verkey" :options="{ width: 200 }"></qrcode>
 
         </b-modal>
 
@@ -17,8 +17,25 @@
         name: "Onboarding",
         data() {
             return {
-                modalShow: false
+                modalShow: false,
+                qrData: null
             }
+        },
+        methods: {
+            loadProofRequest() {
+
+                this.$http.get('wallet/default', {
+                    headers: {
+                        Authorization: this.$store.state.token
+                    }
+                }).then(r => {
+
+                    this.qrData = r.body.dids[0];
+                })
+            }
+        },
+        beforeMount() {
+            this.loadProofRequest();
         }
     }
 </script>
