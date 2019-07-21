@@ -3,7 +3,7 @@
 
         <v-container class="my-5">
 
-            <v-card flat v-for="vacc in vaccs">
+            <v-card flat v-for="vacc in vaccs" :key="vacc.referent">
                 <v-layout row wrap :class="`pa-3 vacc ${vacc.status}`">
 
                     <v-flex xs6 sm4 md2>
@@ -34,7 +34,7 @@
 
         <v-container class="my-5">
 
-            <v-card flat v-for="off in offers">
+            <v-card flat v-for="off in offers" :key="off.id">
                 <v-layout row wrap :class="`pa-3 off ${off.status}`">
 
                     <v-flex xs6 sm4 md2>
